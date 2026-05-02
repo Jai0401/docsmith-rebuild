@@ -7,7 +7,7 @@ A FastAPI-based backend that uses AI agents to automatically generate documentat
 - **Python 3.10+**
 - **FastAPI** - Web framework
 - **SQLite** - Database (built-in)
-- **OpenRouter API** - LLM backend (free models with web search)
+- **MiniMax API** - LLM backend (MiniMax M2.7, 2048k context)
 - **GitPython** - Git operations
 - **LangChain** - Agent framework
 - **SSE** - Server-Sent Events for real-time progress
@@ -27,7 +27,7 @@ docsmith-rebuild/
 │   └── services/
 │       ├── __init__.py
 │       ├── git_service.py   # Clone, file operations
-│       └── openrouter_service.py  # OpenRouter LLM client
+│       └── minimax_service.py  # MiniMax M2.7 client
 └── frontend-patch/
     └── README.md            # Frontend integration instructions
 ```
@@ -43,10 +43,10 @@ pip install fastapi uvicorn langchain langchain-openai gitpython python-dotenv s
 ### 2. Set Environment Variable
 
 ```bash
-export OPENROUTER_API_KEY=your_openrouter_api_key_here
+export MINIMAX_API_KEY=your_minimax_api_key_here
 ```
 
-Get your free OpenRouter API key at: https://openrouter.ai/keys
+Get your MiniMax API key from your account dashboard.
 
 ### 3. Run the Server
 

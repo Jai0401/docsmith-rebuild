@@ -13,7 +13,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from .prompts import SYSTEM_PROMPT, DOCS_GENERATION_PROMPT, DOCKERFILE_PROMPT, DOCKER_COMPOSE_PROMPT
 from .tools import bash, read_file, glob, grep, write_file
 from ..services.git_service import get_repo_files
-from ..services.openrouter_service import get_llm
+from ..services.minimax_service import get_llm
 from ..db import append_agent_log
 
 
@@ -38,9 +38,9 @@ async def generate_docs_agent(
     """
     output_path = os.path.join(repo_dir, "OUTPUT.md")
 
-    if not os.getenv("OPENROUTER_API_KEY"):
-        await _stream(progress_callback, "error", "OPENROUTER_API_KEY not set")
-        append_agent_log(db_id, {"phase": "generate", "error": "Missing OPENROUTER_API_KEY"})
+    if not os.getenv("MINIMAX_API_KEY"):
+        await _stream(progress_callback, "error", "MINIMAX_API_KEY not set")
+        append_agent_log(db_id, {"phase": "generate", "error": "Missing MINIMAX_API_KEY"})
         return ""
 
     # --- Explore: read all project files directly ---
