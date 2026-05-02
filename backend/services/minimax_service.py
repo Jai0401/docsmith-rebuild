@@ -1,7 +1,10 @@
 """MiniMax API client — replaces OpenRouter for docSmith."""
 import os
 
-MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY", "")
+# langchain-openai reads OPENAI_API_KEY by default
+if os.getenv("MINIMAX_API_KEY") and not os.getenv("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = os.getenv("MINIMAX_API_KEY")
+
 MINIMAX_BASE_URL = "https://api.minimax.io/v1"
 MODEL = "MiniMax-M2.7"
 
@@ -15,7 +18,6 @@ def get_llm():
         from langchain_openai import ChatOpenAI
         _lc_llm = ChatOpenAI(
             model=MODEL,
-            api_key=MINIMAX_API_KEY,
             base_url=MINIMAX_BASE_URL,
             temperature=0.1,
             max_tokens=131072,
