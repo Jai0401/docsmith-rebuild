@@ -2,7 +2,7 @@
 import os
 
 MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY", "")
-MINIMAX_BASE_URL = "https://api.minimax.io/anthropic"
+MINIMAX_BASE_URL = "https://api.minimax.io/v1"
 MODEL = "MiniMax-M2.7"
 
 _lc_llm = None
